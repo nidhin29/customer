@@ -53,6 +53,12 @@ class SplashScreenState extends State<SplashScreen>
           if (state.value) {
             final type = TokenManager.instance.user;
             // ignore: use_build_context_synchronously
+            if (type == null) {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => LoginPage()),
+                (route) => false,
+              );
+            }
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
                 builder:

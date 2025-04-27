@@ -38,7 +38,7 @@ class _ChatPageState extends State<ChatPage> {
     super.initState();
     BlocProvider.of<MessageCubit>(
       context,
-    ).viewMessages(widget.id, widget.userType, '');
+    ).viewMessages(widget.id, widget.userType, widget.email ?? '');
     focusNodeNotifier.value.addListener(() {
       if (focusNodeNotifier.value.hasFocus) {
         isEmojiPickerVisible.value = false;
@@ -48,7 +48,7 @@ class _ChatPageState extends State<ChatPage> {
     _timer = Timer.periodic(Duration(seconds: 15), (timer) {
       BlocProvider.of<MessageCubit>(
         context,
-      ).viewMessages(widget.id, widget.userType, '');
+      ).viewMessages(widget.id, widget.userType, widget.email ?? '');
     });
   }
 

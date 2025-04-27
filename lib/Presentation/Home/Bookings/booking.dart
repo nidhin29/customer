@@ -114,7 +114,11 @@ class _ViewBookingsPageState extends State<ViewBookingsPage> {
                                               id: booking.id!,
                                               userType: userType!,
                                               name:
-                                                  '${bookings.bookings![index].customerName}@',
+                                                  '${bookings.bookings![index].customerEmail}',
+                                              email:
+                                                  bookings
+                                                      .bookings![index]
+                                                      .customerEmail,
                                             );
                                           },
                                         ),
@@ -159,11 +163,35 @@ class _ViewBookingsPageState extends State<ViewBookingsPage> {
 
                                             if (userType == 1) ...[
                                               Text(
-                                                "Company: ${booking.ownerCompany}",
+                                                "Customer: ${booking.customerEmail}",
                                               ),
                                               Text(
-                                                "Owner: ${booking.ownerName}",
+                                                "Payment Status: ${booking.paymentStatus == 0 ? "Pending" : "Paid"}",
                                               ),
+                                              booking.approvalStatus == 0
+                                                ? DropdownButton<String>(
+                                                  value: booking.assignedTeam,
+                                                  hint: const Text("Select Team"),
+                                                  items: [
+                                                  "Team A",
+                                                  "Team B",
+                                                  "Team C",
+                                                  "Team D"
+                                                  ].map((team) {
+                                                  return DropdownMenuItem<String>(
+                                                    value: team,
+                                                    child: Text(team),
+                                                  );
+                                                  }).toList(),
+                                                  onChanged: (value) {
+                                                  setState(() {
+                                                    booking.assignedTeam = value;
+                                                  });
+                                                  },
+                                                )
+                                                : Text(
+                                                  "Assigned Team: ${booking.assignedTeam ?? "Not assigned"}",
+                                                ),
                                             ] else if (userType == 0) ...[
                                               Text(
                                                 "Assigned Team: ${booking.assignedTeam ?? "Not assigned"}",
@@ -179,6 +207,10 @@ class _ViewBookingsPageState extends State<ViewBookingsPage> {
                                                 children: [
                                                   ElevatedButton(
                                                     onPressed: () {
+                                                                                                            print(
+                                                        booking.assignedTeam
+                                                            .toString(),
+                                                      );
                                                       context
                                                           .read<BookingCubit>()
                                                           .approveBooking(
@@ -200,6 +232,7 @@ class _ViewBookingsPageState extends State<ViewBookingsPage> {
                                                   const SizedBox(width: 10),
                                                   ElevatedButton(
                                                     onPressed: () {
+
                                                       context
                                                           .read<BookingCubit>()
                                                           .rejectBooking(

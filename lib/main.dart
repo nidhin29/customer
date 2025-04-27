@@ -28,7 +28,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-     c
+        BlocProvider(create: (context) => getIt<FeedbackCubit>()),
+        BlocProvider(create: (context) => getIt<ServiceCubit>()),
+        BlocProvider(create: (context) => getIt<StaffCubit>()),
+        BlocProvider(create: (context) => getIt<EditprofileCubit>()),
+        BlocProvider(create: (context) => getIt<ProfileCubit>()),
+        BlocProvider(create: (context) => getIt<ViewCubit>()),
+        BlocProvider(create: (context) => getIt<BookingCubit>()),
+        BlocProvider(create: (context) => getIt<LoggedinCubit>()),
+        BlocProvider(create: (context) => getIt<MessageCubit>()),
+        BlocProvider(create: (context) => getIt<SigninCubit>()),
+        BlocProvider(create: (context) => getIt<SignupCubit>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

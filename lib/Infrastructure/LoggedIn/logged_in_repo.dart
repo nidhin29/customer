@@ -14,8 +14,13 @@ class LoggedInRepo implements LoggedInService {
     } else {
       final staff = sharedPref.getString('staff');
       final user = sharedPref.getString('user');
-      TokenManager.instance.setStaffType(staff!);
-      TokenManager.instance.setUser(user!);
+      if(staff != null) {
+        TokenManager.instance.setStaffType(staff);
+      } else {
+        TokenManager.instance.setStaffType('0');
+      }
+   
+      await TokenManager.instance.setUser(user!);
       return true;
     }
   }

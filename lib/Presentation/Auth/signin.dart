@@ -48,7 +48,7 @@ class LoginPage extends StatelessWidget {
                   } else {
                     displaySnackBar(
                       context: context,
-                      text: "Something Unexpected Happened",
+                      text: "Your account is not currently activated",
                     );
                   }
                 }

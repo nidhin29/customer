@@ -10,6 +10,8 @@ class TokenRepo implements TokenService {
     final sharedPref = SharedPreferences.getInstance();
     sharedPref.then((value) {
       value.remove('email');
+      value.remove('user');
+      value.remove('staff');
     });
     return;
   }
@@ -20,7 +22,7 @@ class TokenRepo implements TokenService {
     await sharedPref.setString('email', TokenManager.instance.email!);
     final user = TokenManager.instance.user!;
     if (user == '2') {
-await sharedPref.setString('staff', TokenManager.instance.stafftype!);
+    await sharedPref.setString('staff', TokenManager.instance.stafftype!);
     }
     
     return;

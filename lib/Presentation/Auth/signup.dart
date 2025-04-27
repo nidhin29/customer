@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:customer/Application/signup/signup_cubit.dart';
 import 'package:customer/Domain/Failure/failure.dart';
 import 'package:customer/Presentation/Common/snackbar.dart';
-import 'package:customer/Presentation/Home/home.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:customer/Presentation/Auth/signin.dart';
@@ -78,12 +77,10 @@ class RegisterPage extends StatelessWidget {
                 }
               },
               (r) {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(userType: type),
-                  ),
-                  (route) => false,
-                );
+                 displaySnackBar(
+                      context: context,
+                      text: "Registration Successful",
+                    );
               },
             ),
           );

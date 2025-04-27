@@ -34,6 +34,8 @@ class SignUpRepo implements SignUpService {
         TokenManager.instance.setEmail(data.email);
         final sharedPref = await SharedPreferences.getInstance();
         await sharedPref.setString('email', data.email);
+        await sharedPref.setString('user', '3');
+        TokenManager.instance.setUser('3');
         log(response.data.toString());
         return const Right(unit);
       } else {
@@ -72,6 +74,8 @@ class SignUpRepo implements SignUpService {
         TokenManager.instance.setEmail(data.email);
         final sharedPref = await SharedPreferences.getInstance();
         await sharedPref.setString('email', data.email);
+        await sharedPref.setString('user', '1');
+        TokenManager.instance.setUser('1');
         log(response.data.toString());
         return const Right(unit);
       } else {

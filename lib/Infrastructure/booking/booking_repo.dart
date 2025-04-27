@@ -22,9 +22,10 @@ class BookingRepo implements BookingService {
       final dio = Dio(BaseOptions(headers: headers));
       final Response response;
       if (type == '1') {
+        print('hihihi');
         response = await dio.get(
           "${baseUrl}User/view-bookings/",
-          queryParameters: {'owner_email': email},
+          data: {'owner_email': email},
         );
       } else if (type == '3') {
         response = await dio.post(
