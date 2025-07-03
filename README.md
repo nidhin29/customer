@@ -261,7 +261,7 @@ Contributions are welcome! Please feel free to submit issues, feature requests, 
 
 ## 👨‍💻 Developer
 
-Developed with ❤️ for CaterCraft
+Developed with ❤️ for Catering Services
 
 For questions or support, please open an issue on GitHub.
 
