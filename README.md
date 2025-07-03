@@ -4,39 +4,46 @@ A comprehensive customer management application built with Flutter for catering 
 
 ## ✨ Key Features
 
-### 🔑 Authentication
-- Email and password-based user authentication
-- Seamless sign-in/sign-up experience
-- User session management
+### 🔑 Multi-User Authentication System
+- **Three User Types**: Customer (Type 3), Owner (Type 1), and Staff (Type 2)
+- Email and password-based secure user authentication
+- Role-based access control and dynamic UI permissions
+- Seamless sign-in/sign-up experience for all user types
+- User session management with token-based authentication
 
-### 👥 Customer Management
-- Add and manage customer profiles
-- Edit customer information and contact details
-- Track customer service history
-- Customer feedback collection and management
+### 👥 Customer Management (Owner Access)
+- Add and manage customer profiles and information
+- Edit customer contact details and service preferences
+- Track complete customer service history and interactions
+- Customer feedback collection and management system
+- Direct communication tools with customers
 
-### � Service Management
-- Service booking and scheduling
-- Service tracking and status updates
-- Service history for each customer
-- Real-time service updates
+### 📋 Service Management (Owner Access)
+- Service booking and scheduling system
+- Service tracking and real-time status updates
+- Comprehensive service history for each customer
+- Service approval and rejection workflows
+- Service completion marking and tracking
 
-### 👨‍� Staff Management
-- Staff profile management
-- Staff assignment to services
-- Staff performance tracking
-- Team coordination features
+### 👨‍💼 Staff Management (Owner Access)
+- Staff profile management and onboarding process
+- Team assignment system (Team A, B, C, D, E)
+- Multiple staff roles: Manager, Chef, Designer, Delivery Agent, Catering Boy, Local Worker
+- Staff wage management and UPI payment integration
+- Performance tracking and team coordination features
 
-### 💰 Earnings & Financial Tracking
-- Earnings tracking and management
-- Service-based revenue calculation
-- Financial reporting capabilities
+### 💰 Earnings & Financial Tracking (Owner Access)
+- Comprehensive earnings tracking and management
+- Service-based revenue calculation and analytics
+- Financial reporting and business intelligence
+- Revenue insights and profitability analysis
 
-### � Communication System
-- Internal messaging system
-- Customer communication tools
-- Feedback management
-- Real-time notifications
+### 💬 Communication System (All Users)
+- Internal messaging system between all user types
+- Customer-Owner direct communication channels
+- Staff-Owner coordination and team messaging
+- Real-time chat functionality with user type identification
+- Feedback collection and management system
 
 ## 🏗️ Architecture & Tech Stack
 
@@ -126,30 +133,26 @@ lib/
 
 ## 📱 Core Functionalities
 
-### Customer Lifecycle Management
-- **Profile Creation**: Complete customer onboarding
-- **Service History**: Track all customer interactions
-- **Feedback Loop**: Collect and manage customer feedback
-- **Communication**: Direct messaging with customers
+### Customer Lifecycle Management (Multi-User)
+- **Owner Perspective**: Complete customer onboarding and profile management
+- **Customer Perspective**: Self-service profile management and booking history
+- **Staff Perspective**: Customer service delivery and interaction tracking
+- **Feedback Loop**: Multi-directional feedback collection between all user types
+- **Communication**: Role-based messaging and notification system
 
-### Staff Operations
-- **Staff Coordination**: Manage team assignments
-- **Performance Tracking**: Monitor staff productivity
-- **Service Assignment**: Allocate staff to specific services
-- **Team Communication**: Internal messaging system
+### Staff Operations (Owner & Staff Users)
+- **Owner Functions**: Staff hiring, team assignment, wage management, performance monitoring
+- **Staff Functions**: Service delivery, team coordination, customer interaction
+- **Team Management**: 5-team structure (Team A-E) with role-based assignments
+- **Role Hierarchy**: 6 staff types with different responsibilities and wage levels
+- **Communication**: Internal staff messaging and coordination tools
 
-### Business Intelligence
-- **Earnings Analytics**: Track revenue and profitability
-- **Service Metrics**: Monitor service performance
-- **Customer Insights**: Analyze customer behavior
-- **Operational Reports**: Generate business reports
-
-### Queue Implementation Logic
-- Customer data is created locally and added to an in-memory queue
-- The queue processes data sequentially in the background, attempting to upload each entry to Firebase
-- If an upload fails (e.g., due to connectivity issues), the data is re-queued and retried after a fixed delay
-- A StreamController notifies listeners of any queue updates
-- The BLoC merges local queued data and remote Firebase data into a single list, ensuring the UI is always up to date
+### Business Intelligence (Owner Access)
+- **Earnings Analytics**: Revenue tracking, service profitability, financial insights
+- **Service Metrics**: Booking patterns, completion rates, customer satisfaction
+- **Staff Performance**: Productivity tracking, team efficiency, wage optimization
+- **Customer Insights**: Service preferences, booking history, feedback analysis
+- **Operational Reports**: Comprehensive business reporting and analytics dashboard
 
 ## 📱 Getting Started
 
@@ -200,7 +203,7 @@ flutter run
 - Live data synchronization with Firebase
 - Instant updates across the application
 - Offline capability with local storage
-- Queue-based data management for reliability
+
 
 ## 🔐 Security & Data Management
 
@@ -208,6 +211,44 @@ flutter run
 - **Data Encryption**: All data encrypted in transit and at rest
 - **Local Storage**: Secure local data persistence with SharedPreferences
 - **Error Handling**: Comprehensive error handling with custom failure models
+
+## 👥 User Types & Access Levels
+
+CaterCraft supports three distinct user types with different access levels and functionalities:
+
+### 🏢 Owner (User Type: 1)
+**Primary Administrator** - Full system access
+- **Service Management**: Add, edit, and manage catering services
+- **Staff Management**: Hire staff, assign teams, manage wages and performance
+- **Customer Oversight**: View all customer profiles and service history
+- **Financial Control**: Access earnings, financial reports, and revenue analytics
+- **Booking Management**: View and manage all service bookings
+- **Team Coordination**: Assign staff to teams (Team A, B, C, D, E)
+- **Staff Roles Management**: Assign roles (Manager, Chef, Designer, Delivery Agent, Catering Boy, Local Worker)
+
+### 👤 Customer (User Type: 3)
+**Service Recipients** - Customer-focused access
+- **Profile Management**: Edit personal information and contact details
+- **Service Booking**: Book catering services and view booking history
+- **Communication**: Direct messaging with owners and staff
+- **Feedback System**: Provide feedback on completed services
+- **Service Tracking**: Track status of current bookings
+
+### 👨‍🍳 Staff (User Type: 2)
+**Service Providers** - Operational access
+- **Booking Operations**: View assigned bookings and team details
+- **Team Communication**: Coordinate with team members and managers
+- **Service Updates**: Update service status and progress
+- **Performance Tracking**: View assigned tasks and responsibilities
+- **Customer Interaction**: Communicate with customers regarding services
+
+## 🔐 Role-Based Access Control
+
+The application implements sophisticated role-based access control where:
+- **Authentication**: Each user type has dedicated sign-in/sign-up flows
+- **Authorization**: Features are dynamically shown/hidden based on user type
+- **Data Security**: Users can only access data relevant to their role
+- **Session Management**: Secure token-based session handling for all user types
 
 ## 🤝 Contributing
 
@@ -228,10 +269,6 @@ Contributions are welcome! Please feel free to submit issues, feature requests, 
 - **API Integration**: Third-party service integrations
 - **Mobile & Web**: Expand to web platform
 - **Advanced Search**: Enhanced search and filtering capabilities
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 👨‍💻 Developer
 
