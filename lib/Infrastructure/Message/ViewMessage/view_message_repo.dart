@@ -20,7 +20,7 @@ class ViewMessageServiceRepo implements ViewMessageService {
   ) async {
     try {
       final user = TokenManager.instance.user;
-      // final staffType = TokenManager.instance.stafftype;
+      final staffType = TokenManager.instance.stafftype;
       final sharedPref = await SharedPreferences.getInstance();
       final email1 = sharedPref.getString('email');
       final Map<String, dynamic> headers = {'Content-Type': 'application/json'};
@@ -28,7 +28,7 @@ class ViewMessageServiceRepo implements ViewMessageService {
         "$baseUrl${user == '2' ? 'User2/fetch_chat_messages/' : 'User/view_chat/'}",
         data:
             user == '2'
-                ? {"bookingid": id, "staff_email": email1}
+                ? {"bookingid": id, "staff_email":staffType == '1' ? email : email1}
                 : {"booking_id": id},
       );
       if (response.statusCode == 200 || response.statusCode == 201) {

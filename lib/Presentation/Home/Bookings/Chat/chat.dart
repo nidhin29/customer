@@ -35,6 +35,7 @@ class _ChatPageState extends State<ChatPage> {
   bool _isInitialLoad = true;
   @override
   void initState() {
+    print(widget.email);
     super.initState();
     BlocProvider.of<MessageCubit>(
       context,

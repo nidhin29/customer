@@ -24,7 +24,7 @@ class SendMessageRepo implements SendMessageService {
       final staffType = TokenManager.instance.stafftype;
       final Map<String, dynamic> headers = {'Content-Type': 'application/json'};
       final Response response = await Dio(BaseOptions(headers: headers)).post(
-        "$baseUrl${user == '2' ? 'User2/send_chat_message/' : 'User/send_chat/'}",
+        "$baseUrl${user == '2' ? 'User2/send_chat_message/' : user=='1'? 'User/send_chat/' : 'Customer/send_chat/'}",
         data:
             user == '2'
                 ? {

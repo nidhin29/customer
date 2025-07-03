@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:customer/Application/Service/service_cubit.dart';
 import 'package:customer/Domain/Service/_service.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,12 +10,11 @@ class AddServicePage extends StatelessWidget {
   AddServicePage({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  final ValueNotifier<File?> _licenseFile = ValueNotifier<File?>(null);
   final TextEditingController _rateController = TextEditingController();
   final TextEditingController _itemController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
   final ValueNotifier<DateTime?> _selectedDate = ValueNotifier(null);
-  final ValueNotifier<File?> _imageFile = ValueNotifier(null);
 
   void _pickDate(BuildContext context) async {
     final picked = await showDatePicker(
@@ -28,11 +28,12 @@ class AddServicePage extends StatelessWidget {
     }
   }
 
-  void _pickImage() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      _imageFile.value = File(pickedFile.path);
+  void _pickLicenseFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.any,
+    );
+    if (result != null && result.files.single.path != null) {
+      _licenseFile.value = File(result.files.single.path!);
     }
   }
 
@@ -44,7 +45,7 @@ class AddServicePage extends StatelessWidget {
           items: _itemController.text,
           description: _descController.text,
           dateTime: _selectedDate.value!,
-          image: _imageFile.value!,
+          image: _licenseFile.value!,
         ),
       );
     }
@@ -140,7 +141,7 @@ class AddServicePage extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           ValueListenableBuilder<File?>(
-                            valueListenable: _imageFile,
+                            valueListenable: _licenseFile,
                             builder:
                                 (_, file, __) => Column(
                                   children: [
@@ -151,9 +152,9 @@ class AddServicePage extends StatelessWidget {
                                       ),
                                     const SizedBox(height: 8),
                                     OutlinedButton.icon(
-                                      onPressed: _pickImage,
+                                      onPressed: () => _pickLicenseFile(),
                                       icon: const Icon(Icons.upload_file),
-                                      label: const Text("Upload Image"),
+                                      label: const Text("Upload File"),
                                     ),
                                   ],
                                 ),

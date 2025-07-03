@@ -87,11 +87,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i762.FeedbackService>(() => _i277.FeedbackRepo());
     gh.lazySingleton<_i661.SignInService>(() => _i91.SignInRepo());
-    gh.factory<_i661.ProfileCubit>(
-      () => _i661.ProfileCubit(gh<_i243.ProfileService>()),
-    );
     gh.factory<_i756.EditprofileCubit>(
       () => _i756.EditprofileCubit(gh<_i243.ProfileService>()),
+    );
+    gh.factory<_i661.ProfileCubit>(
+      () => _i661.ProfileCubit(gh<_i243.ProfileService>()),
     );
     gh.lazySingleton<_i556.StaffService>(() => _i584.FeedbackRepo());
     gh.factory<_i910.SigninCubit>(

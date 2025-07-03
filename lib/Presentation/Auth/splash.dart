@@ -87,7 +87,7 @@ class SplashScreenState extends State<SplashScreen>
               child: FadeTransition(
                 opacity: _fadeAnimation,
                 child: const Text(
-                  'FeastEase',
+                  'CaterCraft',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 28,
