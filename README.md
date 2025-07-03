@@ -1,6 +1,6 @@
 # CaterCraft - Customer Management System
 
-A comprehensive customer management application built with Flutter for catering services. The app enables efficient management of customer data, service bookings, staff coordination, and feedback collection with real-time synchronization using Firebase.
+A comprehensive customer management application built with Flutter for catering services. The app enables efficient management of customer data, service bookings, staff coordination, and feedback collection.
 
 ## ✨ Key Features
 
@@ -114,8 +114,6 @@ lib/
 - **Injectable** for code generation and DI setup
 
 ### Backend & Data:
-- **Firebase Authentication** for secure user management
-- **Cloud Firestore** for real-time data synchronization
 - **Shared Preferences** for local data persistence
 - **Dio** for HTTP networking and API calls
 
@@ -160,7 +158,6 @@ lib/
 - Flutter SDK (>= 3.7.2)
 - Dart SDK (>= 3.7.2)
 - Android Studio or VS Code with Flutter extensions
-- Firebase account for backend services
 
 ### Installation
 
@@ -180,12 +177,6 @@ flutter pub get
 flutter packages pub run build_runner build
 ```
 
-#### 4. Firebase Setup
-- Create a new Firebase project
-- Enable Authentication and Firestore
-- Download and configure `google-services.json` for Android
-- Update Firebase configuration in your project
-
 #### 5. Run the application
 ```bash
 flutter run
@@ -200,14 +191,12 @@ flutter run
 - Loading states with shimmer effects
 
 ### Real-time Operations
-- Live data synchronization with Firebase
 - Instant updates across the application
 - Offline capability with local storage
 
 
 ## 🔐 Security & Data Management
 
-- **Firebase Authentication**: Secure user authentication and session management
 - **Data Encryption**: All data encrypted in transit and at rest
 - **Local Storage**: Secure local data persistence with SharedPreferences
 - **Error Handling**: Comprehensive error handling with custom failure models
@@ -278,4 +267,4 @@ For questions or support, please open an issue on GitHub.
 
 ---
 
-**About**: CaterCraft is a comprehensive customer management system built with Flutter, designed specifically for catering services. It features customer data management, service booking, staff coordination, and real-time synchronization with Firebase using a custom async queue system.
+**About**: CaterCraft is a comprehensive customer management system built with Flutter, designed specifically for catering services. It features customer data management, service booking, staff coordination
